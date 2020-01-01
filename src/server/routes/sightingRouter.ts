@@ -33,3 +33,17 @@ router.get('/sightings', async (req: Request, res: Response) => {
         res.status(500).send(e)
     }
 });
+
+router.get('/sightings/:id', async (req: Request, res: Response) => {
+    const _id = req.params.id;
+
+    try {
+        const sighting = await Sighting.findOne({ _id });
+        if(!sighting) {
+            return res.status(404).send();
+        }
+        res.status(200).send(sighting);
+    } catch(e) {
+        res.status(500).send(e);
+    }
+});

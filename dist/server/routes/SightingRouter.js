@@ -94,3 +94,28 @@ exports.router.get('/sightings', function (req, res) { return __awaiter(void 0, 
         }
     });
 }); });
+exports.router.get('/sightings/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _id, sighting, e_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _id = req.params.id;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, Sighting_1.Sighting.findOne({ _id: _id })];
+            case 2:
+                sighting = _a.sent();
+                if (!sighting) {
+                    return [2 /*return*/, res.status(404).send()];
+                }
+                res.status(200).send(sighting);
+                return [3 /*break*/, 4];
+            case 3:
+                e_3 = _a.sent();
+                res.status(500).send(e_3);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); });
