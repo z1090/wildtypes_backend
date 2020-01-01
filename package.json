@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "mongo": "/Users/z1090/Web_Development/mongodb/mongodb/bin/mongod --dbpath=/Users/z1090/Web_Development/wild_type/wild_type_backend/mongo_database",
     "start": "node dist/server/app.js",
     "dev:build": "tsc -w",
-    "dev:database": "nodemon dist/database/mongodb.js",
     "dev:run": "nodemon dist/server/app.js",
     "dev": "concurrently npm:dev:*"
   },
