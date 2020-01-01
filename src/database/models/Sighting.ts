@@ -19,8 +19,8 @@ const SightingSchema = new Schema({
         lng: Number,
         address: String,
         map: String,
-    }
-
+    },
+    photo: String
 })
 
 export const Sighting = mongoose.model('Sighting', SightingSchema)

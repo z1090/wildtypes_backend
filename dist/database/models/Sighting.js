@@ -27,6 +27,7 @@ var SightingSchema = new mongoose_1.Schema({
         lng: Number,
         address: String,
         map: String,
-    }
+    },
+    photo: String
 });
 exports.Sighting = mongoose_1.default.model('Sighting', SightingSchema);

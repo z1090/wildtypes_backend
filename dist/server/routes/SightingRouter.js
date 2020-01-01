@@ -49,6 +49,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var Sighting_1 = require("../../database/models/Sighting");
+// interface Sighting extends Document {
+//     user: String;
+//     date: Date;
+//     name: String;
+//     certainty: Number;
+//     businessName: String;
+//     category: String;
+//     useageRating: Number;
+//     location: {
+//         lat: Number;
+//         lng: Number;
+//         address: String;
+//         map: String;
+//     };
+//     photo: String;
+// }
 exports.router = express_1.Router();
 exports.router.get('', function (req, res) {
     res.send('Server is running');
@@ -116,6 +132,70 @@ exports.router.get('/sightings/:id', function (req, res) { return __awaiter(void
                 res.status(500).send(e_3);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.patch('/sightings/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var updates, allowedUpdates, isValidUpdate, sighting_1, e_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                updates = Object.keys(req.body);
+                allowedUpdates = [
+                    'location',
+                    'name',
+                    'certainty',
+                    'businessName',
+                    'category',
+                    'useage',
+                    'photo'
+                ];
+                isValidUpdate = updates.every(function (update) { return allowedUpdates.includes(update); });
+                if (!isValidUpdate) {
+                    return [2 /*return*/, res.status(400).send('Error: Invalid Updates')];
+                }
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 4, , 5]);
+                return [4 /*yield*/, Sighting_1.Sighting.findById(req.params.id)];
+            case 2:
+                sighting_1 = _a.sent();
+                if (!sighting_1) {
+                    return [2 /*return*/, res.status(404).send()];
+                }
+                updates.forEach(function (update) { return sighting_1[update] = req.body[update]; });
+                return [4 /*yield*/, sighting_1.save()];
+            case 3:
+                _a.sent();
+                res.send(sighting_1);
+                return [3 /*break*/, 5];
+            case 4:
+                e_4 = _a.sent();
+                res.status(400).send(e_4);
+                return [3 /*break*/, 5];
+            case 5: return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.delete('/sightings/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var sighting, e_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, Sighting_1.Sighting.findByIdAndDelete(req.params.id)];
+            case 1:
+                sighting = _a.sent();
+                if (!sighting) {
+                    return [2 /*return*/, res.status(404).send()];
+                }
+                res.status(200).send(sighting);
+                return [3 /*break*/, 3];
+            case 2:
+                e_5 = _a.sent();
+                res.status(500).send(e_5);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); });
