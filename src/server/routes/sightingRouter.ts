@@ -70,11 +70,11 @@ router.patch('/sightings/:id', async (req: Request, res: Response) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = [
         'location',
-        'name',
+        'typefaceName',
         'certainty',
         'businessName',
         'category',
-        'useage',
+        'useageRating',
         'photo'
     ]
     const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))

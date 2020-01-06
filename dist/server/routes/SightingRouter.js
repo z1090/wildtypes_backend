@@ -143,11 +143,11 @@ exports.router.patch('/sightings/:id', function (req, res) { return __awaiter(vo
                 updates = Object.keys(req.body);
                 allowedUpdates = [
                     'location',
-                    'name',
+                    'typefaceName',
                     'certainty',
                     'businessName',
                     'category',
-                    'useage',
+                    'useageRating',
                     'photo'
                 ];
                 isValidUpdate = updates.every(function (update) { return allowedUpdates.includes(update); });

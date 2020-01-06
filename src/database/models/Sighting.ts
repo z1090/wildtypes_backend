@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 
 const SightingSchema = new Schema({
-    user: {
+    userId: {
         type: String,
         default: 'DefaultUserID'
     },
@@ -9,7 +9,7 @@ const SightingSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    name: String,
+    typefaceName: String,
     certainty: Number,
     businessName: String,
     category: String,
@@ -18,7 +18,7 @@ const SightingSchema = new Schema({
         lat: Number,
         lng: Number,
         address: String,
-        map: String,
+        mapImage: String,
     },
     photo: String
 })
